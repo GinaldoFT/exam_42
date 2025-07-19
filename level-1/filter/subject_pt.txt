@@ -55,4 +55,4 @@ perror requer:
 
 read requer:
 
-#include <fcntl.h>
+#include <unistd.h>
