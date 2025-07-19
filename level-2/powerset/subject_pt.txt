@@ -1,0 +1,75 @@
+Assignment name : powerset
+Expected files : *.c *.h
+Allowed functions: atoi, printf, fprintf, malloc, calloc, realloc, free, stdout, write
+
+Escreva um programa que receberá como argumento um número inteiro n seguido de um conjunto s de inteiros distintos.
+Seu programa deve exibir todos os subconjuntos de s cuja soma dos elementos seja igual a n.
+
+A ordem das linhas não importa, mas a ordem dos elementos em um subconjunto importa:
+ela deve seguir a ordem do conjunto inicial s.
+Dessa forma, você não deve ter subconjuntos duplicados (por exemplo: '1 2' e '2 1').
+
+Por exemplo, usando o comando ./powerset 5 1 2 3 4 5,
+esta saída é válida:
+
+1 4
+2 3
+5
+
+E esta também é válida:
+
+2 3
+5
+1 4
+
+Mas esta não é válida:
+
+4 1
+3 2
+5
+
+Em caso de erro de alocação com malloc, seu programa deve terminar com código 1.
+
+Não testaremos com conjuntos inválidos (por exemplo, 1 1 2).
+
+💡 Dica: O subconjunto vazio é um subconjunto válido de qualquer conjunto. Ele deve ser exibido como uma linha em branco.
+Exemplos
+
+$> ./powerset 3 1 0 2 4 5 3 | cat -e
+3$
+0 3$
+1 2$
+1 0 2$
+
+$> ./powerset 12 5 2 1 8 4 3 7 11 | cat -e
+8 4$
+1 11$
+1 4 7$
+1 8 3$
+2 3 7$
+5 7$
+5 4 3$
+5 2 1 4$
+
+$> ./powerset 0 1 -1 | cat -e
+$
+1 -1$
+
+$> ./powerset 7 3 8 2 | cat -e
+# (sem saída, pois nenhum subconjunto soma 7)
+
+# Outros testes:
+$> ./powerset 100 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 | cat -e
+...
+
+$> ./powerset -1 1 2 3 4 5 -10 | cat -e
+...
+
+$> ./powerset 0 -1 1 2 3 -2 | cat -e
+...
+
+$> ./powerset 13 65 23 3 4 6 7 1 2 | cat -e
+...
+
+$> ./powerset 10 0 1 2 3 4 5 6 7 8 9 | cat -e
+...

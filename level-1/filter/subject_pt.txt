@@ -1,0 +1,58 @@
+Nome do exercício: filter
+Arquivos esperados: filter.c
+Funções permitidas: read, write, strlen, memmem, memmove, malloc, calloc, realloc, free, printf, fprintf, stdout, stderr, perror
+
+Escreva um programa que receba um e apenas um argumento.
+
+Seu programa deverá então ler da stdin e escrever todo o conteúdo lido na stdout,
+exceto que todas as ocorrências de s devem ser substituídas por '*'
+(com a mesma quantidade de caracteres que s).
+
+Seu programa será testado com tamanhos de buffer aleatórios, usando uma função read personalizada.
+Portanto, o buffer definido no seu programa será preenchido com um número diferente de caracteres a cada nova chamada.
+
+Por exemplo:
+
+./filter bonjour
+
+deverá se comportar da mesma forma que:
+
+sed 's/bonjour/*******/g'
+
+Outro exemplo:
+
+./filter abc
+
+deverá se comportar da mesma forma que:
+
+sed 's/abc/***/g'
+
+Mais geralmente, seu programa deve ser o equivalente ao script de shell filter.sh presente neste diretório
+(você pode comparar o seu programa com ele).
+
+Em caso de erro durante um read ou um malloc, você deve escrever "Error: " seguido da mensagem de erro em stderr
+e retornar 1.
+
+Se o programa for chamado sem argumentos, com um argumento vazio ou com múltiplos argumentos, ele deve retornar 1.
+
+Exemplos de uso:
+
+$> echo 'abcdefaaaabcdeabcabcdabc' | ./filter abc | cat -e
+***defaaa***de******d***$
+$> echo 'ababcabababc' | ./filter ababc | cat -e
+*****ab*****$
+$>
+
+NOTAS:
+memmem requer:
+
+#define _GNU_SOURCE
+#include <string.h>
+
+perror requer:
+
+#include <errno.h>
+
+read requer:
+
+#include <fcntl.h>

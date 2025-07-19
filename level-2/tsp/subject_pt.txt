@@ -1,0 +1,59 @@
+Nome do exercício: tsp
+Arquivos esperados: *.c *.h
+Funções permitidas: write, sqrtf, getline, fseek, fscanf, ferror, feof, fabsf, memcpy, fprintf, fclose, malloc, calloc, realloc, free, fopen, errno, stderr, stdin, stdout
+
+A primeira publicação que se refere a este problema como "problema do caixeiro viajante" está no relatório da RAND Corporation de 1949 por Julia Robinson, intitulado "On the Hamiltonian game (a traveling salesman problem)."
+
+Aqui está como ela define o problema:
+
+    "O objetivo desta nota é apresentar um método para resolver um problema relacionado ao problema do caixeiro viajante. Parece válido dar uma descrição do problema original. Uma formulação é encontrar a rota mais curta para um caixeiro viajante partindo de Washington, visitando todas as capitais dos estados e então retornando a Washington.
+
+    Mais geralmente, encontrar a CURVA FECHADA mais curta que contenha n pontos dados no plano."
+
+Por exemplo, com o seguinte conjunto de cidades:
+
+0, 0  
+1, 0  
+2, 0  
+0, 1  
+1, 1  
+2, 1  
+1, 2  
+2, 2  
+
+Que pode ser representado da seguinte forma:
+
++ + +  
++ + +  
+  + +
+
+O caminho mais curto é:
+
+ _____
+|__   |
+   |__|
+
+Então você deve imprimir o comprimento desse caminho, que é:
+
+8.00
+
+Escreva um programa que leia um conjunto de coordenadas de cidades no formato
+%f, %f\n da entrada padrão e imprima o comprimento do menor caminho possível que contenha todas essas cidades, no formato '%.2f'.
+
+Seu programa não será testado com mais de 11 cidades.
+
+Você encontrará neste diretório um arquivo tsp.c contendo todas as partes chatas deste exercício e arquivos de exemplo para ajudar nos testes.
+
+Dica: para usar sqrtf, adicione -lm ao final do seu comando de compilação.
+
+Por exemplo, isso deve funcionar:
+
+$> cat square.txt
+1, 1
+0, 1
+1, 0
+0, 0
+$> ./tsp < square.txt | cat -e
+4.00$
+
+Dica: para usar sqrtf, adicione -lm ao final do seu comando de compilação.

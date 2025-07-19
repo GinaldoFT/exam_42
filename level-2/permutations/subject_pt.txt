@@ -1,0 +1,25 @@
+Assignment name : permutations
+Expected files : *.c *.h
+Allowed functions: puts, malloc, calloc, realloc, free, write
+
+Escreva um programa que exibirá todas as permutações de uma string passada como argumento.
+
+As soluções devem ser exibidas em ordem alfabética.
+
+Não testaremos seu programa com strings que contenham caracteres repetidos (ex: 'abccd').
+Exemplos
+
+$> ./permutations a | cat -e
+a$
+
+$> ./permutations ab | cat -e
+ab$
+ba$
+
+$> ./permutations abc | cat -e
+abc$
+acb$
+bac$
+bca$
+cab$
+cba$
