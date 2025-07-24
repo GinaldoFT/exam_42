@@ -1,6 +1,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+int	ft_abs(int n)
+{
+	if (n < 0)
+		return (-n);
+	return (n);
+}
+
 int	is_safe(int *board, int col, int row)
 {
 	int	prev = 0;
@@ -9,7 +16,7 @@ int	is_safe(int *board, int col, int row)
 	{
 		if (board[prev] == row)
 			return (0);
-		if (abs(board[prev] - row) == col - prev)
+		if (ft_abs(board[prev] - row) == col - prev)
 			return (0);
 		prev++;
 	}

@@ -39,14 +39,3 @@ $> echo 'abcdefaaaabcdeabcabcdabc' | ./filter abc | cat -e
 $> echo 'ababcabababc' | ./filter ababc | cat -e
 *****ab*****$
 $>
-
-NOTES:
-memmem includes:
-                #define _GNU_SOURCE
-			    #include <string.h>
-
-perror includes:
-                #include <errno.h>
-
-read includes:
-                #include <unistd.h>

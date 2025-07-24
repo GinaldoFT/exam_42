@@ -42,17 +42,3 @@ $> echo 'abcdefaaaabcdeabcabcdabc' | ./filter abc | cat -e
 $> echo 'ababcabababc' | ./filter ababc | cat -e
 *****ab*****$
 $>
-
-NOTAS:
-memmem requer:
-
-#define _GNU_SOURCE
-#include <string.h>
-
-perror requer:
-
-#include <errno.h>
-
-read requer:
-
-#include <unistd.h>

@@ -55,5 +55,3 @@ $> cat square.txt
 0, 0
 $> ./tsp < square.txt | cat -e
 4.00$
-
-Dica: para usar sqrtf, adicione -lm ao final do seu comando de compilação.
