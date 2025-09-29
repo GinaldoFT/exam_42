@@ -1,0 +1,36 @@
+Assignment name  : ft_popen
+Expected files   : ft_popen.c
+Allowed functions: pipe, fork, dup2, execvp, close, exit
+--------------------------------------------------------------------------------------
+
+Escreva a seguinte função:
+
+int ft_popen(const char *file, char *const argv[], char type);
+
+A função deve executar o arquivo `file` com os argumentos `argv` (usando `execvp`).
+Se `type` for 'r', a função deve retornar um descritor de arquivo conectado à saída do comando.
+Se `type` for 'w', a função deve retornar um descritor de arquivo conectado à entrada do comando.
+Em caso de erro ou parâmetro inválido, a função deve retornar -1.
+
+Por exemplo, a função pode ser usada assim:
+
+int main()
+{
+    int  fd;
+    char *line;
+
+    fd = ft_popen("ls", (char *const []){"ls", NULL}, 'r');
+    while ((line = get_next_line(fd)))
+        ft_putstr(line);
+    return (0);
+}
+
+int main()
+{
+    int fd = ft_popen("ls", (char *const []){"ls", NULL}, 'r');
+    dup2(fd, 0);
+    fd = ft_popen("grep", (char *const []){"grep", "c", NULL}, 'r');
+    char *line;
+    while ((line = get_next_line(fd)))
+        printf("%s", line);
+}

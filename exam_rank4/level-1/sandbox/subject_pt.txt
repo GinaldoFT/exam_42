@@ -1,0 +1,26 @@
+Assignment name  : sandbox
+Expected files   : sandbox.c
+Allowed functions: fork, waitpid, exit, alarm, sigaction, kill, printf, strsignal,
+errno, sigaddset, sigemptyset, sigfillset, sigdelset, sigismember
+--------------------------------------------------------------------------------------
+
+Escreva a seguinte função:
+
+#include <stdbool.h>
+int sandbox(void (*f)(void), unsigned int timeout, bool verbose);
+
+Essa função deve testar se a função `f` é uma função “boa” ou uma função “ruim”.  
+Você deve retornar 1 se `f` for boa, 0 se `f` for ruim, ou -1 em caso de erro dentro da sua função.
+
+Uma função é considerada ruim se for terminada ou parada por um sinal (segfault, abort, etc.),  
+se terminar com qualquer código de saída diferente de 0, ou se exceder o tempo limite.
+
+Se `verbose` for verdadeiro, você deve imprimir a mensagem apropriada entre as seguintes:
+"Nice function!\n"
+"Bad function: exited with code <exit_code>\n"
+"Bad function: <descrição do sinal>\n"
+"Bad function: timed out after <timeout> seconds\n"
+
+Você não deve deixar processos zumbis (mesmo que terminados; isso será verificado usando wait).
+
+Seu código será testado com funções muito ruins.

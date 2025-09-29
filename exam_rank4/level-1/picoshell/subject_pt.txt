@@ -1,0 +1,31 @@
+Assignment name:	picoshell
+Expected files:		picoshell.c
+Allowed functions:	close, fork, wait, exit, execvp, dup2, pipe
+___________________________________________________________________
+
+Escreva a seguinte função:
+
+int    picoshell(char **cmds[]);
+
+O objetivo desta função é executar um *pipeline*. Ela deve executar cada
+comando em `cmds` e conectar a saída de um à entrada do próximo comando
+(como faz um shell).
+
+`cmds` contém uma lista terminada em NULL de comandos válidos. Cada linha
+de `cmds` é um array `argv` diretamente utilizável em uma chamada a `execvp`.  
+O primeiro argumento de cada comando é o nome ou caminho do executável e pode
+ser passado diretamente como primeiro argumento de `execvp`.
+
+Se ocorrer qualquer erro, a função deve retornar 1 (você deve, é claro, fechar
+todos os descritores de arquivo abertos antes).  
+Caso contrário, a função deve esperar por todos os processos filhos e retornar 0.  
+Você encontrará neste diretório um arquivo `main.c` que contém algo para ajudar
+a testar sua função.
+
+Exemplos: 
+./picoshell /bin/ls "|" /usr/bin/grep picoshell  
+picoshell  
+
+./picoshell echo 'squalala' "|" cat "|" sed 's/a/b/g'  
+squblblb
+

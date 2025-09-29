@@ -1,0 +1,45 @@
+Assignment name: argo
+Expected files: argo.c
+Allowed functions: getc, ungetc, printf, malloc, calloc, realloc, free, isdigit, fscanf, write
+-----------------
+Escreva uma função `argo` que fará o parse de um arquivo JSON na estrutura declarada em argo.h:
+
+int	argo(json *dst, FILE *stream);
+
+	dst	- é o ponteiro para a AST que você irá criar
+	stream	- é o arquivo a ser parseado (man FILE)
+
+Sua função deve retornar 1 em caso de sucesso e -1 em caso de falha.  
+Se um token inesperado for encontrado, você deve imprimir a seguinte mensagem em stdout:
+"Unexpected token '%c'\n"  
+ou, se o token for EOF:
+"Unexpected end of input\n"
+
+Trate apenas números, strings e mapas.  
+Números serão apenas inteiros básicos, como em scanf("%d").  
+Trate o escape em strings apenas para barras invertidas e aspas (não \n, \u, etc.).  
+Não trate espaços -> considere-os como tokens inválidos.
+
+Em caso de dúvida sobre como parsear JSON, leia o RFC8259.  
+Mas você não precisará dele, pois o formato é simples.  
+Testado com o main, a saída deve ser exatamente a mesma que a entrada (exceto em casos de erro).  
+Existem algumas funções em argo.c que podem te ajudar.
+
+Exemplos que devem funcionar:
+
+$> echo -n '1' | ./argo /dev/stdin | cat -e
+1$
+$> echo -n '"bonjour"' | ./argo /dev/stdin | cat -e
+"bonjour"$
+$> echo -n '"escape! \" "' | ./argo /dev/stdin | cat -e
+"escape! \" "$
+$> echo -n '{"tomatoes":42,"potatoes":234}' | ./argo /dev/stdin | cat -e
+{"tomatoes":42,"potatoes":234}$
+$> echo -n '{"recursion":{"recursion":{"recursion":{"recursion":"recursion"}}}}' | ./argo /dev/stdin | cat -e
+{"recursion":{"recursion":{"recursion":{"recursion":"recursion"}}}}$
+$> echo -n '"unfinished string' | ./argo /dev/stdin | cat -e
+unexpected end of input$
+$> echo -n '"unfinished string 2\"' | ./argo /dev/stdin | cat -e
+unexpected end of input$
+$> echo -n '{"no value?":}' | ./argo /dev/stdin | cat -e
+unexpected token '}'$
